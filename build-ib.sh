@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-set -e
-OPENWRT_TAG="23.05.3"
+set -euo pipefail     # ← 更嚴謹，同時攔截管線錯誤
+set -x                # ← CI 如失敗可直接看到哪一步掛掉
+
+OPENWRT_TAG="${OPENWRT_TAG:-23.05.5}"        # ❶ 允許外部覆寫
 TARGET="bcm27xx/bcm2709"
 PROFILE="rpi-3"
 IB_FILE="openwrt-imagebuilder-${OPENWRT_TAG}-${TARGET}.Linux-x86_64.tar.xz"
