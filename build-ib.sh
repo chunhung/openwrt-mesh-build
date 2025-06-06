@@ -43,11 +43,16 @@ DEFAULT_PKGS="-wpad-basic -wpad-basic-mbedtls -wpad-basic-wolfssl wpad-mesh-open
 #  exit 1
 #fi
 
-
 make image PROFILE="${PROFILE}" \
      PACKAGES="${PACKAGES:-$DEFAULT_PKGS}" \
      FILES="../files" \
      BIN_DIR="../${OUTDIR}" \
      -j"${JOBS}"
+
+# --- build 完成後，把 sysupgrade 檔搬上來 ---
+cd ..   # 回到專案根 (與 output 同層)
+find output/targets -name '*rpi-3*-sysupgrade.img*' -exec cp {} output/ \;
+echo "✅ Firmware copied to output/ :"
+ls -1 output/*rpi-3*-sysupgrade.img*
 
 echo -e "\n🎉 Image(s) ready in ${OUTDIR}\n"
