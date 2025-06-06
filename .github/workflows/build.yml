@@ -29,7 +29,7 @@ jobs:
     - name: Run build script
       run: |
         chmod +x build-ib.sh
-        ./build.sh
+        ./build-ib.sh
 
     - name: Upload image artifact
       uses: actions/upload-artifact@v4
