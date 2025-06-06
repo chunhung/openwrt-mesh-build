@@ -51,7 +51,9 @@ make image PROFILE="${PROFILE}" \
 
 # --- build 完成後，把 sysupgrade 檔搬上來 ---
 cd ..   # 回到專案根 (與 output 同層)
-find output/targets -name '*rpi-3*-sysupgrade.img*' -exec cp {} output/ \;
+# 把 sysupgrade 映像複製到 output/（其實原本就已經在那裡，但保留 find 可同時支援多 profile）
+find output -maxdepth 1 -name '*rpi-3*-sysupgrade.img*' -exec echo "✅ Found {}" \;
+# find output/targets -name '*rpi-3*-sysupgrade.img*' -exec cp {} output/ \;
 echo "✅ Firmware copied to output/ :"
 ls -1 output/*rpi-3*-sysupgrade.img*
 
