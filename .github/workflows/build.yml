@@ -2,8 +2,6 @@ name: Build OpenWrt Mesh Image
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ main ]
 
 jobs:
   build:
