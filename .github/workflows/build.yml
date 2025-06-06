@@ -17,10 +17,16 @@ jobs:
       - name: Build image
         run: |
           cd openwrt-imagebuilder-23.05.3-bcm27xx-bcm2710.Linux-x86_64
-          make image PROFILE="rpi-3" FILES="../files" \
+          make -j1 V=s \
+            image PROFILE="rpi-3" FILES="../files" \
             PACKAGES="kmod-batman-adv batctl alfred avahi-daemon odhcpd-ipv6only iperf3 \
-            tcpdump-full kmod-usb-net kmod-usb-net-rtl8152 wpad-mesh-openssl"
-
+            tcpdump-full kmod-usb-net kmod-usb-net-rtl8152 wpad-mesh-openssl" | tee build.log
+            
+      - uses: actions/upload-artifact@v4
+        with:
+           name: full-log
+           path: openwrt-imagebuilder-*/build.log
+           
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
