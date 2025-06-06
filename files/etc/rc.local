@@ -1,0 +1,18 @@
+# 先全部當 client
+batctl gw_mode client
+sleep 10   # 等 mesh 成形
+
+MY=$(cat /sys/class/net/bat0/address)
+TOP=$(batctl gwl | awk '/=>/ {print $1}')   # batman-adv 推選的最佳 Gateway
+
+if [ "$MY" = "$TOP" ]; then
+  logger "I am primary GW – enable DHCP"
+  uci set dhcp.lan.ignore='0'
+  /etc/init.d/dnsmasq restart
+  /etc/init.d/firewall restart
+else
+  uci set dhcp.lan.ignore='1'
+  /etc/init.d/dnsmasq stop
+fi
+exit 0
+

@@ -1,0 +1,15 @@
+#!/bin/sh
+if [ "$INTERFACE" = "eth0" ]; then
+  if [ "$ACTION" = "ifup" ]; then
+    batctl gw_mode server
+    uci set dhcp.lan.ignore='0'
+    uci commit dhcp
+    /etc/init.d/dnsmasq restart
+    /etc/init.d/firewall reload
+  elif [ "$ACTION" = "ifdown" ]; then
+    batctl gw_mode client
+    uci set dhcp.lan.ignore='1'
+    uci commit dhcp
+    /etc/init.d/dnsmasq stop
+  fi
+fi

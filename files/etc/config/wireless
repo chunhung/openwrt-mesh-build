@@ -1,0 +1,11 @@
+config wifi-device 'radio0'
+	option hwmode '11g'
+	option channel '6'
+
+config wifi-iface 'mesh0'
+	option device 'radio0'
+	option mode 'mesh'
+	option mesh_id 'PiMesh'     # ★ Mesh SSID
+	option encryption 'none'
+	option network 'mesh'
+

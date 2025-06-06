@@ -1,0 +1,11 @@
+config interface 'mesh'
+	option proto 'batadv'
+	option ifname 'mesh0'
+	option auto '1'
+
+config interface 'lan'
+	option ifname 'bat0'
+	option proto 'static'
+	option ipaddr '192.168.9.1'
+	option netmask '255.255.255.0'
+
