@@ -4,8 +4,8 @@ set -x   # 讓 CI 詳列每一步
 
 # --------- 可外部覆寫的參數 -----------------------------
 OPENWRT_TAG="${OPENWRT_TAG:-23.05.5}"
-TARGET_FAMILY="${TARGET_FAMILY:-bcm27xx}"   # 32-bit RPi3
-SUBTARGET="${SUBTARGET:-bcm2709}"           # rpi-3；64 bit 可改 bcm2710
+TARGET_FAMILY="${TARGET_FAMILY:-bcm27xx}"   # 64-bit RPi3
+SUBTARGET="${SUBTARGET:-bcm2710}"           # rpi-3；64 bit 可改 bcm2710
 PROFILE="${PROFILE:-rpi-3}"
 # -------------------------------------------------------
 
