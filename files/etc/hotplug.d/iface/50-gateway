@@ -1,0 +1,10 @@
+#!/bin/sh
+[ "$INTERFACE" = "wan" ] || exit 0
+
+if [ "$ACTION" = "ifup" ]; then
+    batctl meshif bat0 gw_mode server 100MBit/20MBit
+    /etc/init.d/dnsmasq restart
+else
+    batctl meshif bat0 gw_mode off
+    /etc/init.d/dnsmasq stop
+fi
