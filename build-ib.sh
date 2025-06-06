@@ -55,6 +55,6 @@ cd ..   # 回到專案根 (與 output 同層)
 find output -maxdepth 1 -name '*rpi-3*-sysupgrade.img*' -exec echo "✅ Found {}" \;
 # find output/targets -name '*rpi-3*-sysupgrade.img*' -exec cp {} output/ \;
 echo "✅ Firmware copied to output/ :"
-ls -1 output/*rpi-3*-sysupgrade.img*
+ls -1 output
 
 echo -e "\n🎉 Image(s) ready in ${OUTDIR}\n"
