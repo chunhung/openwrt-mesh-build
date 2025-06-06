@@ -34,7 +34,7 @@ cd imagebuilder
 DEFAULT_PKGS="-wpad-basic -wpad-basic-mbedtls -wpad-basic-wolfssl wpad-mesh-openssl \
   kmod-batman-adv batctl-default \
   -luci-ssl -luci-ssl-mbedtls -luci-ssl-wolfssl -libustream-mbedtls -libustream-wolfsslluci \
-  luci-ssl-openssl  luci-app-batman-adv luci-proto-batman-adv \
+  luci-ssl-openssl  luci-proto-batman-adv \
   avahi-daemon avahi-utils"
 
 #if ! make info | grep -q "Profile: ${PROFILE} "; then
