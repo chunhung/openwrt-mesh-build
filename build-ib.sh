@@ -34,11 +34,11 @@ cd imagebuilder
 DEFAULT_PKGS="wpad-mesh-openssl kmod-batman-adv batctl avahi-daemon avahi-utils \
               luci luci-ssl luci-app-batman-adv luci-proto-batman-adv"
 
-if ! make info | grep -q "Profile: ${PROFILE} "; then
-  echo "❌ Profile '${PROFILE}' not found for ${TARGET_FAMILY}/${SUBTARGET}"
-  echo "   👉 先執行 'make info' 查詢正確名稱"
-  exit 1
-fi
+#if ! make info | grep -q "Profile: ${PROFILE} "; then
+#  echo "❌ Profile '${PROFILE}' not found for ${TARGET_FAMILY}/${SUBTARGET}"
+#  echo "   👉 先執行 'make info' 查詢正確名稱"
+#  exit 1
+#fi
 
 
 make image PROFILE="${PROFILE}" \
