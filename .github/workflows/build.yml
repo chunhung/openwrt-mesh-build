@@ -21,6 +21,7 @@ jobs:
             image PROFILE="rpi-3" FILES="../files" \
             PACKAGES="kmod-batman-adv batctl alfred avahi-daemon odhcpd-ipv6only iperf3 \
             tcpdump kmod-usb-net kmod-usb-net-rtl8152 wpad-mesh-openssl" | tee build.log
+          ls -lh bin/targets/bcm27xx/bcm2710/
             
       - uses: actions/upload-artifact@v4
         with:
