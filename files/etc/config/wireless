@@ -1,11 +1,26 @@
 config wifi-device 'radio0'
-	option hwmode '11g'
-	option channel '6'
+        option type     'mac80211'
+        option channel  '6'
+        option htmode   'HT20'
 
 config wifi-iface 'mesh0'
-	option device 'radio0'
-	option mode 'mesh'
-	option mesh_id 'PiMesh'     # ★ Mesh SSID
-	option encryption 'none'
-	option network 'mesh'
+        option device   'radio0'
+        option mode     'mesh'
+        option mesh_id  'OpenMesh'
+        option encryption 'sae'
+        option key      'MeshPass'
+        option network  'mesh_wifi'
 
+# Optional USB‑Wi‑Fi AP (radio1)
+config wifi-device 'radio1'
+        option type     'mac80211'
+        option channel  '11'
+        option htmode   'HT20'
+
+config wifi-iface 'ap'
+        option device   'radio1'
+        option mode     'ap'
+        option ssid     'MeshAP'
+        option encryption 'psk2'
+        option key      'ClientPass'
+        option network  'lan'
