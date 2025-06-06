@@ -13,18 +13,6 @@ DIR="${TARGET_FAMILY}/${SUBTARGET}"          # 目錄用斜線
 IB_FILE="openwrt-imagebuilder-${OPENWRT_TAG}-${TARGET_FAMILY}-${SUBTARGET}.Linux-x86_64.tar.xz"
 IB_URL="https://downloads.openwrt.org/releases/${OPENWRT_TAG}/targets/${DIR}/${IB_FILE}"
 MIRROR_URL="https://mirrors.hit.edu.cn/openwrt/releases/${OPENWRT_TAG}/targets/${DIR}/${IB_FILE}"
-DEFAULT_PKGS="
-  # 802.11s + SAE
-  -wpad-basic -wpad-basic-mbedtls -wpad-basic-wolfssl
-  wpad-mesh-openssl
-  # B.A.T.M.A.N.
-  kmod-batman-adv batctl-default     # ← batctl-default/tiny/full 任選
-  # LuCI + HTTPS (統一 openssl 變體，避免 mbedtls/wolfssl 衝突)
-  luci luci-ssl-openssl
-  luci-app-batman-adv luci-proto-batman-adv
-  # mDNS
-  avahi-daemon avahi-utils
-"
 
 JOBS="$(nproc)"
 OUTDIR="output"
@@ -43,8 +31,18 @@ if [ ! -d imagebuilder ]; then
 fi
 
 cd imagebuilder
-DEFAULT_PKGS="wpad-mesh-openssl kmod-batman-adv batctl avahi-daemon avahi-utils \
-              luci luci-ssl luci-app-batman-adv luci-proto-batman-adv"
+DEFAULT_PKGS="
+  # 802.11s + SAE
+  -wpad-basic -wpad-basic-mbedtls -wpad-basic-wolfssl
+  wpad-mesh-openssl
+  # B.A.T.M.A.N.
+  kmod-batman-adv batctl-default     # ← batctl-default/tiny/full 任選
+  # LuCI + HTTPS (統一 openssl 變體，避免 mbedtls/wolfssl 衝突)
+  luci luci-ssl-openssl
+  luci-app-batman-adv luci-proto-batman-adv
+  # mDNS
+  avahi-daemon avahi-utils
+"
 
 #if ! make info | grep -q "Profile: ${PROFILE} "; then
 #  echo "❌ Profile '${PROFILE}' not found for ${TARGET_FAMILY}/${SUBTARGET}"
