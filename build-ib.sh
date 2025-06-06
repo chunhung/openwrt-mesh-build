@@ -15,7 +15,6 @@ IB_URL="https://downloads.openwrt.org/releases/${OPENWRT_TAG}/targets/${DIR}/${I
 MIRROR_URL="https://mirrors.hit.edu.cn/openwrt/releases/${OPENWRT_TAG}/targets/${DIR}/${IB_FILE}"
 
 JOBS="$(nproc)"
-OUTDIR="output"
 
 # 下載 Image Builder（主站失敗自動換鏡像）
 if [ ! -f "$IB_FILE" ]; then
@@ -46,15 +45,4 @@ DEFAULT_PKGS="-wpad-basic -wpad-basic-mbedtls -wpad-basic-wolfssl wpad-mesh-open
 make image PROFILE="${PROFILE}" \
      PACKAGES="${PACKAGES:-$DEFAULT_PKGS}" \
      FILES="../files" \
-     BIN_DIR="../${OUTDIR}" \
      -j"${JOBS}"
-
-# --- build 完成後，把 sysupgrade 檔搬上來 ---
-cd ..   # 回到專案根 (與 output 同層)
-# 把 sysupgrade 映像複製到 output/（其實原本就已經在那裡，但保留 find 可同時支援多 profile）
-find output -maxdepth 1 -name '*rpi-3*-sysupgrade.img*' -exec echo "✅ Found {}" \;
-# find output/targets -name '*rpi-3*-sysupgrade.img*' -exec cp {} output/ \;
-echo "✅ Firmware copied to output/ :"
-ls -1 output
-
-echo -e "\n🎉 Image(s) ready in ${OUTDIR}\n"
