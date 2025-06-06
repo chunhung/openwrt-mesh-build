@@ -1,0 +1,4 @@
+config system
+        option hostname 'meshpi'
+        option zonename 'Asia/Taipei'
+        option timezone 'CST-8'
