@@ -40,3 +40,4 @@ jobs:
       with:
         name: openwrt-mesh-image
         path: output/*rpi-3*-sysupgrade.img*
+        if-no-files-found: error         # 找不到就 fail，避免空包
