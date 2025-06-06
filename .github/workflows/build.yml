@@ -3,7 +3,7 @@ name: Build OpenWrt Mesh Image
 env:
   OPENWRT_TAG: "23.05.5"
   TARGET_FAMILY: "bcm27xx"
-  SUBTARGET: "bcm2709"
+  SUBTARGET: "bcm2710"
   PROFILE: "rpi-3"
   
 on:
