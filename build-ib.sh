@@ -46,3 +46,6 @@ make image PROFILE="${PROFILE}" \
      PACKAGES="${PACKAGES:-$DEFAULT_PKGS}" \
      FILES="../files" \
      -j"${JOBS}"
+
+pwd
+ls -4 .
