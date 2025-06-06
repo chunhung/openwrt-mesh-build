@@ -48,4 +48,4 @@ make image PROFILE="${PROFILE}" \
      -j"${JOBS}"
 
 pwd
-ls -4 .
+ls -lh bin/targets/bcm27xx/bcm2710/
