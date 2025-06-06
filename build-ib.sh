@@ -22,8 +22,13 @@ if [ ! -f "$IB_FILE" ]; then
   wget -q --show-progress "$IB_URL" || wget -q --show-progress "$MIRROR_URL"
 fi
 
-# 解壓並統一改名
-[ -d imagebuilder ] || { tar xf "$IB_FILE"; mv openwrt-imagebuilder-* imagebuilder; }
+# 解壓並安全改名
+if [ ! -d imagebuilder ]; then
+  tar xf "$IB_FILE"
+
+  DIR_UNPACKED="${IB_FILE%.tar.xz}"   # ← 去掉尾碼，精準對到目錄
+  mv "$DIR_UNPACKED" imagebuilder     # 只會有 1 個來源 + 1 目標
+fi
 
 cd imagebuilder
 DEFAULT_PKGS="wpad-mesh-openssl kmod-batman-adv batctl avahi-daemon avahi-utils \
