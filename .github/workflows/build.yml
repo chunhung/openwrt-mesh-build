@@ -1,5 +1,11 @@
 name: Build OpenWrt Mesh Image
 
+env:
+  OPENWRT_TAG: "23.05.5"
+  TARGET_FAMILY: "bcm27xx"
+  SUBTARGET: "bcm2709"
+  PROFILE: "rpi-3"
+  
 on:
   workflow_dispatch:
 
@@ -20,9 +26,9 @@ jobs:
       uses: actions/cache@v4
       with:
         path: openwrt/dl
-        key: openwrt-dl-${{ hashFiles('.config') }}
+        key: dl-${{ env.OPENWRT_TAG }}-${{ hashFiles('build-ib.sh') }}
         restore-keys: |
-          openwrt-dl-
+          dl-
 
     - name: Run build script
       run: |
