@@ -20,7 +20,7 @@ jobs:
           make -j1 V=s \
             image PROFILE="rpi-3" FILES="../files" \
             PACKAGES="kmod-batman-adv batctl alfred avahi-daemon odhcpd-ipv6only iperf3 \
-            tcpdump-full kmod-usb-net kmod-usb-net-rtl8152 wpad-mesh-openssl" | tee build.log
+            tcpdump kmod-usb-net kmod-usb-net-rtl8152 wpad-mesh-openssl" | tee build.log
             
       - uses: actions/upload-artifact@v4
         with:
